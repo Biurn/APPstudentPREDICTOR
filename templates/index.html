@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Prédiction de la Note Finale</title>
+</head>
+<body>
+    <h1>Prédiction de la note finale de l'élève (G3)</h1>
+
+    <form method="POST">
+        <label for="G1">Note au premier trimestre (G1) :</label>
+        <input type="number" name="G1" required><br><br>
+
+        <label for="G2">Note au deuxième trimestre (G2) :</label>
+        <input type="number" name="G2" required><br><br>
+
+        <label for="studytime">Temps d’étude hebdomadaire (1 à 4) :</label>
+        <input type="number" name="studytime" required><br><br>
+
+        <label for="failures">Nombre d’échecs scolaires :</label>
+        <input type="number" name="failures" required><br><br>
+
+        <label for="absences">Nombre total d’absences :</label>
+        <input type="number" name="absences" required><br><br>
+
+        <label for="Medu">Niveau d'éducation de la mère (0 à 4) :</label>
+        <input type="number" name="Medu" required><br><br>
+
+        <label for="Fedu">Niveau d'éducation du père (0 à 4) :</label>
+        <input type="number" name="Fedu" required><br><br>
+
+        <label for="goout">Fréquence de sortie avec les amis (1 à 5) :</label>
+        <input type="number" name="goout" required><br><br>
+
+        <label for="health">État de santé (1 à 5) :</label>
+        <input type="number" name="health" required><br><br>
+
+        <label for="Dalc">Consommation d’alcool en semaine (1 à 5) :</label>
+        <input type="number" name="Dalc" required><br><br>
+
+        <label for="Walc">Consommation d’alcool le week-end (1 à 5) :</label>
+        <input type="number" name="Walc" required><br><br>
+
+        <label for="traveltime">Temps de trajet domicile-école (1 à 4) :</label>
+        <input type="number" name="traveltime" required><br><br>
+
+        <label for="famrel">Qualité des relations familiales (1 à 5) :</label>
+        <input type="number" name="famrel" required><br><br>
+
+        <label for="freetime">Temps libre après l’école (1 à 5) :</label>
+        <input type="number" name="freetime" required><br><br>
+
+        <label for="age">Âge :</label>
+        <input type="number" name="age" required><br><br>
+
+
+        <button type="submit">Prédire</button>
+    </form>
+
+    {% if prediction is not none %}
+        <h2>Note finale prédite : {{ prediction }}</h2>
+    {% elif error %}
+        <p style="color: red;">Erreur : {{ error }}</p>
+    {% endif %}
+</body>
+</html>
+
+
+<style>
+    /* Reset et polices */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+body {
+    background-color: #f8fafc;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* En-tête */
+h1 {
+    color: #2563eb;
+    margin: 30px 0;
+    font-size: 2.2rem;
+    text-align: center;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #2563eb;
+    margin: 20px 0;
+    font-size: 1.8rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Formulaire */
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin: 20px 0;
+}
+
+label {
+    display: block;
+    margin: 15px 0 8px;
+    color: #2563eb;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background-color: #f8fafc;
+}
+
+input[type="number"]:focus {
+    border-color: #2563eb;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+}
+
+/* Bouton */
+button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    margin-top: 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    width: 100%;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Résultats */
+p[style*="color:red"] {
+    background-color: #fee2e2;
+    color: #dc2626 !important;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    text-align: center;
+    border-left: 4px solid #dc2626;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+form, h1, h2 {
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    form {
+        padding: 20px;
+    }
+}
+</style>
+
+
+   
