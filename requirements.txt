@@ -1,7 +1,5 @@
-pip freeze > requirements.txt
 Flask
 gunicorn
 numpy
 pandas
 scikit-learn
-joblib
