@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 def train_model():
     # Dataset Student Performance (UCI) - données réelles
-    url = "https://raw.githubusercontent.com/dsrscientist/dataset1/master/student-mat.csv"
+    df = pd.read_csv("student-mat.csv", sep=';')
     df = pd.read_csv(url, sep=';')
     
     features = ['G1','G2','studytime','failures','absences',
