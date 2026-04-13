@@ -5,12 +5,8 @@ from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
 import joblib, os
 
-app = Flask(__name__)
-
 def train_model():
-    # Dataset Student Performance (UCI) - données réelles
     df = pd.read_csv("student-mat.csv", sep=';')
-    df = pd.read_csv(url, sep=';')
     
     features = ['G1','G2','studytime','failures','absences',
                 'Medu','Fedu','goout','health','Dalc',
@@ -23,7 +19,7 @@ def train_model():
     model.fit(X, y)
     joblib.dump(model, 'model.pkl')
     return model
-
+    
 # Charge ou réentraîne le modèle
 try:
     model = joblib.load("model.pkl")
